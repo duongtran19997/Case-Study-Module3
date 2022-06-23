@@ -1,0 +1,11 @@
+{
+  "name": "case-study-module3",
+  "version": "1.0.0",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "qs": "^6.10.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

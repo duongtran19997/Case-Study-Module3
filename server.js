@@ -12,15 +12,19 @@ let handlers = {};
 const mimeTypes = {
     "html": "text/html",
     "js": "text/javascript",
-    "css": "text/css"
+    "css": "text/css",
+    "jpeg": "image/jpeg",
+    "svg": "image/svg+xml",
+    "png": "image/png"
 };
 
 const server = http.createServer((req, res) => {
-    const filesDefences = req.url.match(/\.js|.css/);
+    const filesDefences = req.url.match(/\.js$|.css$|.jpeg$|.svg$|.png$/);
     if (filesDefences) {
         const extension = mimeTypes[filesDefences[0].toString().split('.')[1]];
         res.writeHead(200, { 'Content-Type': extension });
-        fs.createReadStream(__dirname + "/"+ req.url).pipe(res)
+        fs.createReadStream(__dirname + req.url).pipe(res)
+        console.log((__dirname + req.url))
     }else{
         const urlPath = url.parse(req.url,true).pathname;
         let trimPath = urlPath.replace(/^\/+|\/+$/g, '');
@@ -44,10 +48,30 @@ handlers.home=(req,res)=>{
 
 handlers.create=(req,res)=>{
     AdminControllers.createNewDrinks(req,res)
+};
+
+handlers.update = (req,res)=>{
+    AdminControllers.showUpdateMenu(req,res)
+};
+
+handlers.delete = (req,res)=>{
+    AdminControllers.deleteDrinks(req,res)
+};
+
+handlers.edit = (req,res)=>{
+    AdminControllers.editDrinks(req,res)
+};
+
+handlers.order = (req,res)=>{
+    AdminControllers.orderDrinks(req,res)
 }
 
 const router ={
     'home':handlers.home,
     'create':handlers.create,
-    '':handlers.home
+    '':handlers.home,
+    'update':handlers.update,
+    'delete1':handlers.delete,
+    'edit':handlers.edit,
+    'order':handlers.order
 }

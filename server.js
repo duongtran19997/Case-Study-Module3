@@ -15,11 +15,12 @@ const mimeTypes = {
     "css": "text/css",
     "jpeg": "image/jpeg",
     "svg": "image/svg+xml",
-    "png": "image/png"
+    "png": "image/png",
+    "jpg": "image/jpg"
 };
 
 const server = http.createServer((req, res) => {
-    const filesDefences = req.url.match(/\.js$|.css$|.jpeg$|.svg$|.png$/);
+    const filesDefences = req.url.match(/\.js$|.css$|.jpeg$|.svg$|.png$|.jpg$/);
     if (filesDefences) {
         const extension = mimeTypes[filesDefences[0].toString().split('.')[1]];
         res.writeHead(200, { 'Content-Type': extension });

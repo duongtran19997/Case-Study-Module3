@@ -54,8 +54,8 @@ class AdminControllers {
                         html += `<td>${value.name}</td>`
                         html += `<td>${value.type}</td>`
                         html += `<td>${value.price}</td>`
-                        html += `<td><a href="/delete1?id=${value.id}">delete</a></td>`
-                        html += `<td><a href="/edit?id=${value.id}">fix</a></td>`
+                        html += `<td><a href="/delete1?id=${value.id}" class="btn btn-danger" >delete</a></td>`
+                        html += `<td><a href="/edit?id=${value.id}" class="btn btn-info" >fix</a></td>`
                         html += '</tr>'
                     })
                     data = data.replace('{list-drinks}', html);
@@ -155,7 +155,7 @@ class AdminControllers {
                             html += `<td>${value.name}</td>`
                             html += `<td>${value.type}</td>`
                             html += `<td>${value.price}</td>`
-                            html += `<td><input type="text" name="quantity"></td>`
+                            html += `<td><input type="text" name="${value.id}" id="${value.id}" value="0"></td>`
                             html += '</tr>'
                         })
                         data = data.replace('{list-drinks}', html);
@@ -166,7 +166,21 @@ class AdminControllers {
                 })
             })
         }else{
+            let data ='';
+            req.on('data', chunk=>{
+                data+=chunk
+            });
+            req.on('end', ()=>{
+                let dataOrder = qs.parse(data);
+                for (let [key, value] of Object.entries(dataOrder)) {
+                    if(value!==0){
 
+                        console.log(key,value)
+                    }
+                }
+                res.end()
+
+            })
         }
     }
 }

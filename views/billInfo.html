@@ -41,7 +41,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="/home">
+                            <a class="nav-link" href="/">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 MENU
                             </a>
@@ -162,18 +162,14 @@
                                 <table id="datatablesSimple" style="width: 100%; height: 100%">
                                     <thead>
                                     <tr>
-                                        <th>STT</th>
+                                        <th>ID Bill</th>
                                         <th>Drink Name</th>
-                                        <th>Type</th>
-                                        <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Price</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <form method="post">
-                                        <tr>{list-drinks}</tr>
-                                        <tr><td colspan="4" ><button type="submit" class="btn btn-primary">Create Order</button></td></tr>
-                                    </form>
+                                    {list-bills}
                                     </tbody>
                                 </table>
                             </div>

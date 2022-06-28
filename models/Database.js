@@ -12,6 +12,7 @@ class Database {
             'database': 'manager',
             'charset': 'utf8_general_ci'
         })
-    }
+    };
+
 }
 module.exports = Database;
